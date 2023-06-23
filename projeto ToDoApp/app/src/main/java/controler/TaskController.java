@@ -102,6 +102,7 @@ public class TaskController {
         PreparedStatement statement = null;
         ResultSet resultSet = null;
         
+        //lista de tarefas que será devolvida quando o método for chamado
         List<Task> tasks = new ArrayList<>();
         
         try{
@@ -123,14 +124,14 @@ public class TaskController {
                 task.setUpdateDate(resultSet.getDate("updateDate"));
                 
                 tasks.add(task);
-                
-            }
+            } 
             
         }catch(Exception ex){
             throw new RuntimeException("Erro ao deletar a tarefa", ex);
         }finally{
-            ConnectionFactory.closeConnection(connection, statement);
+            ConnectionFactory.closeConnection(connection, statement, resultSet);
         }
         
+        return tasks;
     }
 }

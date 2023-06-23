@@ -1,0 +1,62 @@
+	Iniciando um projeto   proxima aula 11c
+-Definição de um projeto básico
+--Requisitos do projeto
+--regras de negócio
+--tecnologia
+
+ToDo app
+
+Descrição: Aplicação para o gerencimento de projetos e as tarefas envolvidas nestes.
+
+Objetivo: Resolver a questão de organização de tarefas de um ou vários projetos.
+
+Entidades:
+
+* Projeto:
+ - Nome;
+ - Descrição;
+ - Data de criação;
+ - Data de atualização;
+
+* Tarefa:
+ - Nome;
+ - Descrição;
+ - Status;
+ - Observações;
+ - Prazo;
+ - Data de criação;
+ - Data de atualização;
+
+Requisitos Funcionais:
+*Cadastrar projeto;
+*Alterar projeto;
+*Deletar projeto;
+
+*Cadastrar tarefa;
+*Alterar tarefa;
+*Deletar terafa;
+
+Regras de negócio:
+* Não irá conter um sistema de login
+* Não haverá o conceito de usuário
+* Toda tarefa deve pertencer a um projeto
+
+Tecnologias utilizadas:
+* Java
+* MySql
+
+Etapas:
+-Criação do banco de dados (ok)
+-Criação das classes de modelo (ok)
+-Criação da conexão com o banco de dados (ok)
+-Criação das classes de controle (Acesso aos dados do banco)
+-Criação da interface gráfica
+	--Criação da tela principal
+		--Criação do CellRederer Prazo
+		--Criação do CellRederer Editar e Deletar
+	--Criação da tela de cadastro de projeto
+	--Criação da tela de cadastro de tarefa
+-Implementação dos eventos
+	- Validações
+-Ajustes finais
+-Teste de aplicação
