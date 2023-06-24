@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Task;
@@ -20,7 +19,7 @@ import util.ConnectionFactory;
  */
 public class TaskController {
     
-    public void save (Task task) throws SQLException{
+    public void save (Task task) throws Exception{
         String sql = "Insert into tasks (idProject, name, description,"
                 + "completed, notes, deadline, createDate, updateDate)"
                 + "values(?, ?, ?, ?, ?, ?, ?, ?)";
@@ -59,8 +58,13 @@ public class TaskController {
         PreparedStatement statement = null;
         
         try{
+            //estabelecendo a conexão com o banco de dados
             connection = ConnectionFactory.getConnetion();
+            
+            //preparando a query
             statement = connection.prepareStatement(sql);
+            
+            //setando os valores do statement
             statement.setInt(1, task.getIdProject());
             statement.setString(2, task.getName());
             statement.setString(3, task.getDescription());
@@ -69,8 +73,11 @@ public class TaskController {
             statement.setDate(6, new Date(task.getDeadline().getTime()));
             statement.setDate(7, new Date(task.getCreateDate().getTime()));
             statement.setDate(8, new Date(task.getUpdateDate().getTime()));
+            statement.setInt(9, task.getId());
             
+            //executando a query
             statement.execute();
+            
         }catch(Exception ex){
             throw new RuntimeException("Erro ao atualizar a tarefa", ex);
         }finally{
@@ -78,16 +85,24 @@ public class TaskController {
         }
     }
     
-    public void removeById(int taskId) throws SQLException{
+    public void removeById(int taskId) throws Exception{
         String sql = "delete from tasks where id = ?";
         Connection connection = null;
         PreparedStatement statement = null;
         
         try{
+            //criação da conexão com o bando de dados
             connection = ConnectionFactory.getConnetion();
+            
+            //preparando a query
             statement = connection.prepareStatement(sql);
+            
+            //setando os valores
             statement.setInt(1, taskId);
+            
+            //executando a query
             statement.execute();
+            
         }catch(Exception ex){
             throw new RuntimeException("Erro ao deletar a tarefa", ex);
         }finally{
